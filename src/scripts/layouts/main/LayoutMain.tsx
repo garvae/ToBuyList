@@ -17,6 +17,9 @@ const LayoutMain: React.FC = () => {
     return (
         <div className="layout layout-main">
             <div className="content-container">
+                {/* Такой подход приведет к очень длинному условию, если страниц будет больше 2.
+                Лучше не привязывать css классы к location, а например, использовать их внутри компонентов каждого route */}
+                {/* currentLocation не очень полезная переменная, можно от нее избавиться и использовать просто location.pathname */}
                 <div className={`content-container--inner ${currentLocation === '/' ? 'page-home' : 'page-list'}`}>
                     <Navbar />
 
