@@ -31,6 +31,7 @@ const store = {
         store.ta_value = e;
     },
 
+    // e обычно используется как сокращение от event, в данном случае это id
     ta_addNote: (e: number): void => {
         store.list_current.push({
             id: e,
@@ -38,6 +39,10 @@ const store = {
             done: false,
         });
         store.ta_value = '';
+
+        // Лучше разделять бизнес-логику и вью, например,
+        // управлять показом hint в react или в отдельном сторе mobx
+        // подробнее тут https://mobx.js.org/defining-data-stores.html
         store.hint_done = true;
         store.list_order.order.push(e.toString());
         setTimeout(() => {

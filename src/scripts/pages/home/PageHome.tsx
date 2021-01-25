@@ -9,6 +9,8 @@ import icon_cross_big from '../../../img/nav/cross_big.svg';
 const PageHome: React.FC = observer(() => {
     const { t } = useTranslation();
 
+    // newId создается при каждом рендере, нужно ли здесь данное поведение?
+    // Я бы вынесла его из этого компонента
     const newId = Number(new Date().valueOf().toString().slice(-4));
 
     return (

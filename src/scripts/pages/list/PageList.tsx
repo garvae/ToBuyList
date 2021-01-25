@@ -9,12 +9,17 @@ import ScrollbarWrapper from '../../components/nav/scrollbars/Scrollbar';
 // ----------------------------------- clear
 
 const PageList: React.FC = observer(() => {
+    // Для использования стора лучше использовать контекст или другие способы.
+    // В данном случае, проблем, скорее всего не будет, но если используется SSR,
+    // то глобальные переменные - не лучшая практика.
     const list = store.list_current;
 
     return (
         <div className="page--list">
             <div className="container-list">
                 <ul>
+                    {/* Не поняла назначение этой обертки, у меня показывается обычный скроллбар,
+                    а если нужно его визуально изменить, можно использоваться CSS */}
                     <ScrollbarWrapper>
                         {list.map(({ done, text, id }) => (
                             <ListItem key={id} id={id} text={text} done={done} />

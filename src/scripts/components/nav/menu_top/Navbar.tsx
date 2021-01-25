@@ -18,15 +18,20 @@ const Navbar: React.FC = observer(() => {
 
     // ------------------------------ span component ------------------------------
 
+    // Стоит вынести SpanBtn и ее интерфейс за пределы компонента Navbar, 
+    // лучше, вообще в другой файл. В том виде, что сейчас, SpanBtn будет создаваться
+    // заново при каждом рендере. 
     interface ISpanBtn {
         children: React.ReactNode;
         tabIndex: number;
         className: string;
+        // лучше использовать какое-то более очевидное название
         fn: (e: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>) => void | (() => void);
     }
 
     const SpanBtn: React.FC<ISpanBtn> = (props: ISpanBtn) => {
         return (
+            // здесь лучше использовать тэг button
             <span
                 role="button"
                 tabIndex={props.tabIndex}
@@ -64,9 +69,16 @@ const Navbar: React.FC = observer(() => {
             setDarkModeOn(false);
             darkMode.disable();
         }
+
+        // Не стоит отключать это правило, т.к. это может привести к тому, что
+        // будет использоваться устаревшее значение зависимости. 
+        // Более подробно здесь: https://reactjs.org/docs/hooks-faq.html#performance-optimizations
+        
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    // Если darkMode.value имеет то же значение, что и darkModeOn
+    // зачем дополнительная переменная?
     useEffect(() => {
         if (darkMode.value) {
             setDarkModeOn(true);
@@ -78,6 +90,9 @@ const Navbar: React.FC = observer(() => {
     // ------------------------------ menu open ------------------------------
 
     const [openMenu, setOpenMenu] = useState<boolean>(false);
+
+    // Не совсем поняла назначение этой функции, предполагалось, что при клике на меню,
+    // оно не будет закрываться, пока пользователь не кликнул в другое место? На моем устройстве не работает.
 
     const clickOutMenu = (event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>): void => {
         if (!openMenu) {
