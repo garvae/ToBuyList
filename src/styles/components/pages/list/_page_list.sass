@@ -3,16 +3,11 @@
 
 
 .page-list
-  min-width: 320px
-
   .hidden
     visibility: hidden
 
-  .container-list-item--done,
-  .button-cross-small
-    &.hidden
-      display: none
-
+  .container-list-item--done.hidden, .button-cross-small.hidden
+    display: none
 
 .container-list-item
   width: 320px
@@ -21,12 +16,16 @@
   align-content: center
   flex-wrap: nowrap
   justify-content: space-around
+  background-color: rgba(62,62,62, .25)
+  border-radius: 30px
+  margin-bottom: 20px
 
   ul
     list-style: none
 
   input[type='text']
     width: 200px
+
 
   .container-list-item--done
     width: 26px
@@ -44,14 +43,16 @@
     user-select: none
     align-items: center
     justify-content: center
+    cursor: pointer
+    position: relative
 
     &::before
       content: ""
       display: flex
       width: 23px
       height: 19px
-      border: 3px solid colors.$white_transp_100
       border-radius: 50%
+      border: 3px solid colors.$white_transp_100
 
     img
       position: absolute
@@ -62,7 +63,7 @@
   input[type='checkbox']:checked ~ label
     &::before
       border-color: colors.$white_transp_100
-      background-color: colors.$grey_300
+      background-color: colors.$grey_100
 
     img
       opacity: 1
@@ -71,54 +72,55 @@
 .page--list
   display: flex
   flex-direction: column
-  flex-wrap: nowrap
-  align-items: center
-  align-content: center
-  justify-content: space-around
-  align-self: center
   height: 300px
-  overflow-y: auto
-  width: 94vw
-  max-width: 320px
-  border-radius: 20px
-  background: colors.$grey_300
+  justify-content: center
 
-.container-list ul
+.container-list
+  overflow-y: auto
+  display: flex
+  justify-content: center
+  width: max-content
   overflow-x: hidden
-  overflow-y: auto
+  padding: 0 20px
+  align-self: center
 
-.container-list,
-.container-list ul
-  width: 100%
-  height: 300px
-  overflow-y: auto
+  scrollbar-color: rgba(0, 0, 0, 0.15) rgba(255, 255, 255, 0.1)
+  scrollbar-width: thin
 
+  &::-webkit-scrollbar-track
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3)
+    background-color: #F5F5F5
 
-  input[type='text']
-    height: 60px
+  &::-webkit-scrollbar
+    width: 10px
+    background-color: #F5F5F5
+
+  &::-webkit-scrollbar-thumb
+    background-color: #000000
+    border: 2px solid #555555
+
+  input[type='text'], ul input[type='text']
     background: transparent
     outline: none
     border: none
-    font: 20px fonts.$font_family_sans
     font-weight: 600
-    color: colors.$text_grey_85
     text-overflow: ellipsis
     width: 160px
-
-  li
+    font: 20px fonts.$font_family_sans
+    color: colors.$text_grey_85
     height: 60px
-    border-radius: 20px
 
-    img.container-list-item--burger
-      width: 26px
-      height: 26px
+  li img.container-list-item--burger, ul li img.container-list-item--burger, li .button-cross-small img, ul li .button-cross-small img
+    width: 26px
+    height: 26px
 
-    .button-cross-small
-      img
-        width: 26px
-        height: 26px
+  li .container-list-item--done img, ul li .container-list-item--done img
+    width: 16px
 
-    .container-list-item--done
-      img
-        width: 16px
-        height: auto
+.ScrollbarsCustom-Content
+  box-sizing: border-box
+  padding: 0.05px
+  width: min-content
+  display: flex
+  flex-direction: column
+

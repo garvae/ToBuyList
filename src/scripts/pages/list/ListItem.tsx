@@ -15,7 +15,7 @@ export interface IListItemDraggable {
 
 const ListItem: React.FC<IListItemDraggable> = observer((props: IListItemDraggable) => {
     return (
-        <li className="container-list-item">
+        <div className="container-list-item">
             {/* -------------- draggable list button -------------- */}
 
             {/* <img */}
@@ -49,7 +49,7 @@ const ListItem: React.FC<IListItemDraggable> = observer((props: IListItemDraggab
                     <img src={icon_tick_small} alt="icon_tick_small" />
                 </label>
             </div>
-        </li>
+        </div>
     );
 });
 
