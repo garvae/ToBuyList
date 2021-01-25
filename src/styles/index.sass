@@ -1,0 +1,35 @@
+// =========================================== USES
+
+@use "common/fonts"
+
+// =========================================== IMPORTS
+
+@import "base/reset"
+@import "base/reset_yahoo"
+@import "base/typography"
+@import "common/typography"
+@import "components/containers/container_content"
+@import "components/layouts/layout_main"
+@import "components/nav/navbar"
+@import "components/nav/button_bottom"
+@import "components/pages/home/page_home"
+@import "components/pages/list/page_list"
+
+// =========================================== MAIN
+
+html, body, #root, .layout
+  min-width: 320px
+  width: 100vw
+  height: 100vh
+  font-size: 16px
+  font-family: fonts.$font_family_sans
+  //overflow: hidden
+
+
+a
+  &:active, &:focus
+    outline: none
+
+input, textarea, input:active, textarea:active, :focus
+  outline: none
+

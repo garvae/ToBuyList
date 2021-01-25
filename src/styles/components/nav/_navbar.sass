@@ -1,0 +1,166 @@
+@use '../../common/colors'
+
+@mixin open-menu
+  ul
+    width: 100%
+
+    li
+      opacity: 1
+      transition: opacity 0.25s
+
+    li:nth-child(1)
+      animation: slide-left 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94)  both
+
+    li:nth-child(2)
+      animation: slide-left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s  both
+
+
+
+.navbar,
+.navbar ul
+  display: flex
+  align-self: flex-start
+  width: 100%
+  //flex-direction: column
+  //flex-wrap: nowrap
+  //justify-content: space-between
+  //align-items: center
+  //align-content: center
+
+.navbar
+  span
+    cursor: pointer
+    z-index: 2
+    position: relative
+
+    &::before
+      content: ""
+      width: 100%
+      height: 100%
+      background: transparent
+      transition: background-color 0.3s
+      position: absolute
+      border-radius: 50%
+      z-index: -1
+
+    @media (hover: hover) and (pointer: fine)
+
+      &:hover
+        &::before
+          background-color: colors.$white_transp_100
+          transition: background-color 0.3s
+
+      &:active
+        &::before
+          background-color: colors.$white_transp_300
+
+  .icon-edit,
+  .icon-darkMode
+    img
+      margin: 16px 18px
+
+
+  .icon-lang
+    font-size: 1.65rem
+    font-weight: 600
+    width: 60px
+    height: 60px
+    align-content: center
+    display: flex
+    justify-content: center
+
+    p
+      display: flex
+      align-items: center
+      justify-content: center
+      height: min-content
+      align-self: center
+      margin-bottom: 8px
+
+  .icon-menu
+    display: flex
+
+    img
+      margin: 0 10px
+
+
+  li
+    display: flex
+
+  li:nth-child(2)
+    align-self: center
+
+  ul
+    justify-content: space-between
+    align-items: flex-start
+    list-style: none
+
+
+  ul:nth-child(2)
+    overflow: hidden
+
+
+  li:nth-child(2)
+    flex-direction: row-reverse
+
+    li
+      padding-right: 10px
+      opacity: 0
+      transition: opacity 0.25s
+
+    ul
+      width: 0
+      transition: width 0.3s
+
+      li:nth-child(1)
+        animation: slide-right 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s  both
+
+      li:nth-child(2)
+        animation: slide-right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)  both
+
+    @media (hover: hover) and (pointer: fine)
+      &:hover
+        @include open-menu
+
+
+@media (hover: none) and (pointer: coarse)
+  .open
+    li:nth-child(2)
+      @include open-menu
+
+@media (hover: none) and (pointer: coarse)
+  * :focus
+    outline: none
+
+
+
+
+@keyframes slide-left
+  0%
+    transform: translateX(100px)
+
+  100%
+    transform: translateX(0)
+
+@keyframes slide-right
+  0%
+    transform: translateX(0)
+
+  100%
+    transform: translateX(150px)
+
+
+.light-mode
+  .icon-lang
+    p
+      color: colors.$grey_transp_250
+
+.dark-mode
+  .icon-lang
+    p
+      color: colors.$white
+
+
+.page-home
+  .icon-edit
+    visibility: hidden

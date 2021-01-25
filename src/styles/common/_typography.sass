@@ -1,0 +1,102 @@
+@use "media"
+
+@function strip-unit($value)
+  @return $value / ($value * 0 + 1)
+
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size)
+  $u1: unit($min-vw)
+  $u2: unit($max-vw)
+  $u3: unit($min-font-size)
+  $u4: unit($max-font-size)
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4
+    &
+      font-size: $min-font-size
+      @media screen and (min-width: $min-vw)
+        font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}))
+
+      @media screen and (min-width: $max-vw)
+        font-size: $max-font-size
+
+
+@mixin font_resize_big_title($size)
+  $min_width: 50px
+  $max_width: 1200px
+  $min_font_size: 8px
+  $max_font_size: 8em
+  @include fluid-type($min_width, $max_width, $min_font_size, $max_font_size)
+  font-size: #{$size}vh
+
+
+  @media (orientation: landscape)
+
+    @include media.media("<phone")
+
+    @include media.media(">=phone", "<tablet")
+
+    @include media.media(">=tablet", "<desktop")
+
+    @media (max-width: 1299px)
+      font-size: #{$size * 0.8}vw
+
+    @media (min-width: 1300px)
+      font-size: #{$size * 0.7}rem
+
+
+  @media (orientation: portrait)
+    font-size: #{$size * 0.9}vw
+
+    @include media.media("<phone")
+
+    @include media.media(">=phone", "<tablet")
+      font-size: #{$size * 0.85}vw
+
+    @include media.media(">=tablet", "<desktop")
+
+    @include media.media(">=desktop")
+
+
+
+@mixin font_resize_big_subtitle($size)
+  $min_width: 50px
+  $max_width: 1200px
+  $min_font_size: 8px
+  $max_font_size: 8em
+  @include fluid-type($min_width, $max_width, $min_font_size, $max_font_size)
+  font-size: #{$size}vh
+
+  @media (orientation: landscape)
+
+    @include media.media("<phone")
+
+    @include media.media(">=phone", "<tablet")
+
+    @include media.media(">=tablet", "<desktop")
+
+    @media (max-width: 1299px)
+      font-size: #{$size * 0.6}vw
+
+    @media (min-width: 1300px)
+      font-size: #{$size * 0.5}rem
+
+
+  @media (orientation: portrait)
+
+    @include media.media("<phone")
+      font-size: #{$size * 1}vw
+
+    @include media.media(">=phone", "<tablet")
+      font-size: #{$size * 0.8}vw
+
+    @include media.media(">=tablet", "<desktop")
+      font-size: #{$size * 0.7}vw
+
+    @include media.media(">=desktop")
+      font-size: #{$size * 0.5}rem
+
+
+
+
+
+

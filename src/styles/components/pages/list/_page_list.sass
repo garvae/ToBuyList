@@ -1,0 +1,124 @@
+@use '../../../common/colors'
+@use '../../../common/fonts'
+
+
+.page-list
+  min-width: 320px
+
+  .hidden
+    visibility: hidden
+
+  .container-list-item--done,
+  .button-cross-small
+    &.hidden
+      display: none
+
+
+.container-list-item
+  width: 320px
+  display: flex
+  align-items: center
+  align-content: center
+  flex-wrap: nowrap
+  justify-content: space-around
+
+  ul
+    list-style: none
+
+  input[type='text']
+    width: 200px
+
+  .container-list-item--done
+    width: 26px
+    height: 26px
+
+  input[type='checkbox']
+    position: absolute
+    opacity: 0
+    width: inherit
+    height: inherit
+    z-index: -1
+
+  label
+    display: flex
+    user-select: none
+    align-items: center
+    justify-content: center
+
+    &::before
+      content: ""
+      display: flex
+      width: 23px
+      height: 19px
+      border: 3px solid colors.$white_transp_100
+      border-radius: 50%
+
+    img
+      position: absolute
+      width: 16px
+      height: auto
+      opacity: 0
+
+  input[type='checkbox']:checked ~ label
+    &::before
+      border-color: colors.$white_transp_100
+      background-color: colors.$grey_300
+
+    img
+      opacity: 1
+
+
+.page--list
+  display: flex
+  flex-direction: column
+  flex-wrap: nowrap
+  align-items: center
+  align-content: center
+  justify-content: space-around
+  align-self: center
+  height: 300px
+  overflow-y: auto
+  width: 94vw
+  max-width: 320px
+  border-radius: 20px
+  background: colors.$grey_300
+
+.container-list ul
+  overflow-x: hidden
+  overflow-y: auto
+
+.container-list,
+.container-list ul
+  width: 100%
+  height: 300px
+  overflow-y: auto
+
+
+  input[type='text']
+    height: 60px
+    background: transparent
+    outline: none
+    border: none
+    font: 20px fonts.$font_family_sans
+    font-weight: 600
+    color: colors.$text_grey_85
+    text-overflow: ellipsis
+    width: 160px
+
+  li
+    height: 60px
+    border-radius: 20px
+
+    img.container-list-item--burger
+      width: 26px
+      height: 26px
+
+    .button-cross-small
+      img
+        width: 26px
+        height: 26px
+
+    .container-list-item--done
+      img
+        width: 16px
+        height: auto

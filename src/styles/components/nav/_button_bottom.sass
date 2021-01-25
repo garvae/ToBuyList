@@ -1,0 +1,92 @@
+@use '../../common/colors'
+@use '../../common/fonts'
+
+.container--btn-bottom
+  width: 80vw
+  max-width: 320px
+  align-self: center
+
+.button-big--bottom
+  width: 80vw
+  max-width: 320px
+  height: 10vh
+  max-height: 80px
+  border-radius: 40px
+  background: colors.$grey_transp_250
+  transition: background-color 0.3s
+  font: 24px fonts.$font_family_sans
+  cursor: pointer
+  z-index: 1
+
+
+  a
+    color: colors.$text_grey_85
+    text-decoration: none
+
+@media (hover: hover) and (pointer: fine)
+  .button-big--bottom:hover
+    background: colors.$grey_50
+    transition: background-color 0.3s
+
+  .button-big--bottom:active
+    background: colors.$grey_25
+
+
+.hint--list-counter
+  display: flex
+  width: 40px
+  height: 40px
+  border-radius: 20px
+  background: colors.$white
+  justify-content: center
+  align-self: flex-end
+  margin-bottom: -20px
+  z-index: 2
+
+  span
+    display: flex
+    align-self: center
+    justify-self: center
+    font: 24px fonts.$font_family_sans
+    font-weight: 600
+    color: colors.$red_100
+
+.hint-done
+  display: flex
+  width: 40px
+  height: 40px
+  border-radius: 20px
+  background: #ffffff
+  justify-content: center
+  z-index: 0
+  position: absolute
+
+  img
+    display: flex
+    align-self: center
+    width: 70%
+    height: auto
+
+  &.visible
+    animation: slide-top 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
+
+  &.hidden
+    opacity: 0
+
+
+
+@keyframes slide-top
+  100%
+    transform: translateY(-120px)
+    opacity: 0
+
+  45%
+    opacity: 1
+
+  30%
+    transform: translateY(-50px)
+    opacity: 1
+
+  0%
+    transform: translateY(20px)
+    opacity: 0
